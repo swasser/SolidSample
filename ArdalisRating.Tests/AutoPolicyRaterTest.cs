@@ -1,31 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using Xunit;
 
 namespace ArdalisRating.Tests
 {
-
-    public class FakeLogger : ILogger
-    {
-        public List<string> loggedMessages = new List<string>();
-        public void Log(string message)
-        {
-            loggedMessages.Add(message);
-        }
-    }
-
-    public class FakeRatingUpdater : IRatingUpdater
-    {
-        public decimal? NewRating { get; private set; } 
-        
-        public void UpdateRating(decimal rating)
-        {
-            NewRating = rating;
-        }
-    }
-
     public class AutoPolicyRaterTest
     {
         [Fact]
@@ -52,7 +29,7 @@ namespace ArdalisRating.Tests
         [Fact]
         public void RatingIs1000WhenDeductableLessThan500()
         {
-            var ratingUpdater = new FakeRatingUpdater();
+            var logger = new FakeLogger();
             var policy = new Policy
             {
                 Type = PolicyType.Auto.ToString(),
@@ -63,11 +40,11 @@ namespace ArdalisRating.Tests
                 Deductible = 100
             };
 
-            var sut = new AutoPolicyRater(ratingUpdater);
+            var sut = new AutoPolicyRater(logger);
 
-            sut.Rate(policy);
+            var result = sut.Rate(policy);
 
-            Assert.Equal(1000m, ratingUpdater.NewRating);
+            Assert.Equal(1000m, result);
         }
     }
 }
