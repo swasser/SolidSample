@@ -12,8 +12,8 @@ namespace ArdalisRating
     public class RatingEngine
     {
         private ConsoleLogger _logger = new ();
-        private PolicyReader _policyReader = new PolicyReader();
-        private PolicyDeserializer _policyDeserializer = new PolicyDeserializer();
+        private PolicyReader _policyReader = new ();
+        private PolicyDeserializer _policyDeserializer = new ();
         public decimal Rating { get; set; }
 
         public RatingEngine (PolicyReader reader, ConsoleLogger logger)
