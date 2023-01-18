@@ -1,7 +1,4 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using System;
-using System.IO;
+﻿using System;
 
 namespace ArdalisRating
 {
@@ -11,15 +8,16 @@ namespace ArdalisRating
     /// </summary>
     public class RatingEngine
     {
-        private ConsoleLogger _logger = new ();
-        private PolicyReader _policyReader = new PolicyReader();
-        private PolicyDeserializer _policyDeserializer = new PolicyDeserializer();
+        private ConsoleLogger _logger;
+        private PolicyReader _policyReader;
+        private PolicyDeserializer _policyDeserializer;
         public decimal Rating { get; set; }
 
-        public RatingEngine (PolicyReader reader, ConsoleLogger logger)
+        public RatingEngine (PolicyReader reader, ConsoleLogger logger, PolicyDeserializer policyDeserializer)
         {
             _logger = logger;
             _policyReader = reader;
+            _policyDeserializer = policyDeserializer;
         }
 
         public void Rate()

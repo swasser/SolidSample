@@ -19,12 +19,13 @@ namespace ArdalisRating.Tests
 
             var logger = new ConsoleLogger();
             var reader = new PolicyReader();
+            var serializer = new PolicyDeserializer();
 
 
             string json = JsonConvert.SerializeObject(policy);
             File.WriteAllText("policy.json", json);
 
-            var engine = new RatingEngine(reader, logger);
+            var engine = new RatingEngine(reader, logger, serializer);
             engine.Rate();
             var result = engine.Rating;
 
@@ -43,11 +44,12 @@ namespace ArdalisRating.Tests
 
             var logger = new ConsoleLogger();
             var reader = new PolicyReader();
+            var serializer = new PolicyDeserializer();
 
             string json = JsonConvert.SerializeObject(policy);
             File.WriteAllText("policy.json", json);
 
-            var engine = new RatingEngine(reader, logger);
+            var engine = new RatingEngine(reader, logger, serializer);
             engine.Rate();
             var result = engine.Rating;
 

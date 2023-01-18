@@ -10,8 +10,9 @@ namespace ArdalisRating
 
             var logger = new ConsoleLogger();
             var reader = new PolicyReader();
+            var serializer = new PolicyDeserializer();
 
-            var engine = new RatingEngine(reader, logger);
+            var engine = new RatingEngine(reader, logger, serializer);
 
             engine.Rate();
 
