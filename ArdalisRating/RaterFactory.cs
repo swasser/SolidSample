@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ArdalisRating
+﻿namespace ArdalisRating
 {
     internal class RaterFactory
     {
@@ -15,21 +9,21 @@ namespace ArdalisRating
             _logger = logger;
         }
 
-        public decimal? Rate(Policy policy)
+        public AbstractRater Create(Policy policy)
         {
             switch (policy.Type)
             {
                 case PolicyType.Auto:
                 {
-                    return new AutoPolicyRater(_logger).Rate(policy);
+                    return new AutoPolicyRater(_logger);
                 }
                 case PolicyType.Land:
                 {
-                    return new LandPolicyRater(_logger).Rate(policy);
+                    return new LandPolicyRater(_logger);
                 }
                 case PolicyType.Life:
                 {
-                    return new LifePolicyRater(_logger).Rate(policy);
+                    return new LifePolicyRater(_logger);
                 }
                 default:
                     _logger.Log("Unknown policy type");

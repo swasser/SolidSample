@@ -1,21 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ArdalisRating
+﻿namespace ArdalisRating
 {
-    internal class LandPolicyRater
+    internal class LandPolicyRater : AbstractRater
     {
-        private ConsoleLogger _logger;
+        public LandPolicyRater(ConsoleLogger logger) : base(logger){}
 
-        public LandPolicyRater(ConsoleLogger logger)
-        {
-            _logger = logger;
-        }
-
-        public decimal? Rate(Policy policy)
+        public override decimal? Rate(Policy policy)
         {
             if (policy.Type == PolicyType.Land)
             {

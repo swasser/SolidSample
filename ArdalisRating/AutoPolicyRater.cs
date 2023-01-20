@@ -2,16 +2,11 @@
 
 namespace ArdalisRating
 {
-    internal class AutoPolicyRater
+    internal class AutoPolicyRater : AbstractRater
     {
-        private ConsoleLogger _logger;
-
-        public AutoPolicyRater(ConsoleLogger logger)
-        {
-            _logger = logger;
-        }
-
-        public decimal? Rate(Policy policy)
+        public AutoPolicyRater(ConsoleLogger logger) : base(logger) {}
+ 
+        public override decimal? Rate(Policy policy)
         {
             if (policy.Type == PolicyType.Auto)
             {

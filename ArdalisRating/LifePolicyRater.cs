@@ -1,21 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ArdalisRating
 {
-    internal class LifePolicyRater
+    internal class LifePolicyRater : AbstractRater
     {
-        private ConsoleLogger _logger;
+        public LifePolicyRater(ConsoleLogger logger) : base(logger){}
 
-        public LifePolicyRater(ConsoleLogger logger)
-        {
-            _logger = logger;
-        }
-
-        public decimal? Rate(Policy policy)
+        public override decimal? Rate(Policy policy)
         {
             if (policy.Type == PolicyType.Life)
             {
@@ -32,7 +23,7 @@ namespace ArdalisRating
                 if (policy.Amount == 0)
                 {
                     _logger.Log("Life policy must include an Amount.");
-  }
+                }
                 int age = DateTime.Today.Year - policy.DateOfBirth.Year;
                 if (policy.DateOfBirth.Month == DateTime.Today.Month &&
                     DateTime.Today.Day < policy.DateOfBirth.Day ||
