@@ -2,13 +2,16 @@
 {
     public abstract class Rater
     {
-        protected readonly IRatingContext _context;
-        protected readonly ConsoleLogger _logger;
+        //protected readonly IRatingContext _context;
 
-        public Rater(IRatingContext context)
+        protected readonly IRatingUpdater _ratingUpdater;
+        //protected readonly ConsoleLogger _logger;
+        public ILogger Logger { get; set; } = new ConsoleLogger();
+
+        public Rater(IRatingUpdater ratingUpdater)
         {
-            _context = context;
-            _logger = _context.Logger;
+            _ratingUpdater = ratingUpdater;
+            //_logger = _context.Logger;
         }
 
         public abstract void Rate(Policy policy);

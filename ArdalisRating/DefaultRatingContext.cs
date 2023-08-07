@@ -6,7 +6,7 @@ namespace ArdalisRating
     {
         public RatingEngine Engine { get; set; }
 
-        public ConsoleLogger Logger => new ConsoleLogger();
+        //public ConsoleLogger Logger => new ConsoleLogger();
 
         public Rater CreateRaterForPolicy(Policy policy, IRatingContext context)
         {

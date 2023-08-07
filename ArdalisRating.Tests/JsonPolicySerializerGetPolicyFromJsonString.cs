@@ -20,10 +20,10 @@ namespace ArdalisRating.Tests
         public void ReturnsSimpleAutoPolicyFromValidJsonString()
         {
             var inputJson = @"{
-  ""type"": ""Auto"",
-  ""make"": ""BMW""
-}
-";
+                  ""type"": ""Auto"",
+                  ""make"": ""BMW""
+                }
+            ";
             var serializer = new JsonPolicySerializer();
 
             var result = serializer.GetPolicyFromJsonString(inputJson);
