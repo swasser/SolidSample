@@ -4,8 +4,9 @@ namespace ArdalisRating
 {
     public enum PolicyType
     {
-        Life = 0,
-        Land = 1,
-        Auto = 2
+        Unknown = 0,
+        Life = 1,
+        Land = 2,
+        Auto = 3
     }
 }
