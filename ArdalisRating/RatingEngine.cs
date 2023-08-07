@@ -30,7 +30,7 @@
 
             var rater = new RaterFactoryWithReflection(_logger).Create(policy);
 
-            Rating = rater?.Rate(policy);
+            Rating = rater.Rate(policy);
 
             _logger.Log("Rating completed.");
         }
