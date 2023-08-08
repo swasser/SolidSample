@@ -1,25 +1,30 @@
-﻿using System;
-
-namespace ArdalisRating
+﻿namespace ArdalisRating
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Ardalis Insurance Rating System Starting...");
+            ILogger logger = new FileLogger();
+            
+            logger.Log("Ardalis Insurance Rating System Starting...");
 
-            var engine = new RatingEngine();
+            IPolicySource policySource = new FilePolicySource();
+
+            IPolicySerializer policySerializer = new JsonPolicySerializer();
+
+            RaterFactory raterFactory = new RaterFactory(logger);
+
+            var engine = new RatingEngine(logger, policySource, policySerializer, raterFactory);
             engine.Rate();
 
             if (engine.Rating > 0)
             {
-                Console.WriteLine($"Rating: {engine.Rating}");
+                logger.Log($"Rating: {engine.Rating}");
             }
             else
             {
-                Console.WriteLine("No rating produced.");
+                logger.Log("No rating produced.");
             }
-
         }
     }
 }

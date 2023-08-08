@@ -2,14 +2,13 @@
 {
     public abstract class Rater
     {
-        protected readonly IRatingUpdater _ratingUpdater;
-        public ILogger Logger { get; set; } = new ConsoleLogger();
+        protected readonly ILogger _logger;
 
-        public Rater(IRatingUpdater ratingUpdater)
+        public Rater(ILogger logger)
         {
-            _ratingUpdater = ratingUpdater;
+            _logger = logger;
         }
 
-        public abstract void Rate(Policy policy);
+        public abstract decimal Rate(Policy policy);
     }
 }

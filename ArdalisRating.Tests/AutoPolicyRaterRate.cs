@@ -1,29 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using Xunit;
 
 namespace ArdalisRating.Tests
 {
-    public class FakeLogger : ILogger
-    {
-        public List<string> LoggedMessages { get; } = new List<string>();
-
-        public void Log(string message)
-        {
-            LoggedMessages.Add(message);
-        }
-    }
-
-    public class FakeRatingUpdater : IRatingUpdater
-    {
-        public decimal? Rating { get; private set; }
-
-        public void UpdateRating(decimal rating)
-        {
-            Rating = rating;
-        }
-    }
-   
     public class AutoPolicyRaterRate
     {
         [Fact]
@@ -33,9 +12,7 @@ namespace ArdalisRating.Tests
 
             var policy = new Policy { Type = "Auto" };
 
-            var rater = new AutoPolicyRater(null);
-
-            rater.Logger = logger;
+            var rater = new AutoPolicyRater(logger);
 
             rater.Rate(policy);
 
@@ -47,13 +24,13 @@ namespace ArdalisRating.Tests
         {
             var policy = new Policy { Type = "Auto", Make = "BMW", Deductible = 200 };
 
-            var ratingUpdater = new FakeRatingUpdater();
+            var logger = new FakeLogger();
 
-            var rater = new AutoPolicyRater(ratingUpdater);
+            var rater = new AutoPolicyRater(logger);
 
-            rater.Rate(policy);
+            var rate = rater.Rate(policy);
 
-            Assert.Equal(1000m, ratingUpdater.Rating.Value);
+            Assert.Equal(1000m, rate);
 
         }
 

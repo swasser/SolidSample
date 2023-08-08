@@ -1,6 +1,5 @@
 ﻿{
-  "type": "Flood",
-  "bondAmount": "1000000",
-  "valuation": "1100000",
-  "elevationAboveSeaLevelFeet": "1001"
+  "type": "Life",
+  "dateOfBirth": "1918-05-10",
+  "amount": "10000000"
 }
